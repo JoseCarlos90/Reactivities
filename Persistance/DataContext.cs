@@ -1,5 +1,4 @@
-﻿using System;
-using Domain;
+﻿using Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistance
@@ -10,6 +9,8 @@ namespace Persistance
         {
             
         }
+
+        public DbSet<Activity> Activities { get; set; }
 
         public DbSet<Value> Values { get; set; }
 
