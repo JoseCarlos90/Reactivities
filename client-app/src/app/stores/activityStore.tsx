@@ -40,6 +40,7 @@ class ActivityStore {
       });
     } catch (error) {
       runInAction("loading activities error", () => {
+        debugger;
         this.loadingInitial = false;
       });
       console.log(error);
@@ -47,6 +48,7 @@ class ActivityStore {
   };
 
   @action loadActivity = async (id: string) => {
+    debugger;
     let activity = this.getActivity(id);
     if (activity) {
       this.activity = activity;
@@ -59,10 +61,10 @@ class ActivityStore {
           this.loadingInitial = false;
         });
       } catch (error) {
-        runInAction("gettting activity", () => {
+        runInAction("get activity error", () => {
           this.loadingInitial = false;
-          console.log(error);
-        });
+        })
+        console.log(error);
       }
     }
   };

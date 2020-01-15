@@ -1,7 +1,17 @@
 import axios, { AxiosResponse } from 'axios';
 import { IActivity } from '../models/activity';
+import { history } from '../..';
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
+
+// axios.interceptors.response.use(undefined, error => {
+//     console.log(error);
+//     debugger;
+//     if(error.response.status === 404){
+//         console.log(error.response);
+//         history.push('/notfound');
+//     }
+// })
 
 const responseBody = (response: AxiosResponse) => response.data;
 
