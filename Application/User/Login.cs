@@ -25,7 +25,7 @@ namespace Application.User
             public QueryValidator()
             {
                 RuleFor(x => x.Email).NotEmpty();
-                RuleFor(x => x.Password).NotEmpty();
+                RuleFor(x => x.Password).NotEmpty().MinimumLength(8);
             }
         }
 
