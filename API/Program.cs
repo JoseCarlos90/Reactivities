@@ -6,6 +6,7 @@ using Persistance;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Domain;
+using Persistence;
 
 namespace API
 {
