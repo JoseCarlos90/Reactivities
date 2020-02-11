@@ -21,7 +21,7 @@ import { RootStoreContext } from "../../../app/stores/rootStore";
 
 const validate = combineValidators({
   title: isRequired({ message: "The event title is required" }),
-  categoty: isRequired("Category"),
+  category: isRequired("Category"),
   description: composeValidators(
     isRequired("Description"),
     hasLengthGreaterThan(4)({
