@@ -12,7 +12,7 @@ const ActivityListItemAttendees: React.FC<IProps> = ({attendees}) => {
             {attendees.map(attendee => (
                 <List.Item key={attendee.userName}>
                     <Popup header={attendee.displayName}
-                    trigger={<Image size='mini' circular src={attendee.imagen || '/assets/user.png'}></Image>}/>
+                    trigger={<Image size='mini' circular src={attendee.image || '/assets/user.png'}></Image>}/>
                 </List.Item>
             ))}
         </List>
