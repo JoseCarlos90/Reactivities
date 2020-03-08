@@ -74,10 +74,12 @@ const requests = {
       .then(responseBody),
   postFrom: (url: string, file: Blob) => {
     let formData = new FormData();
-    formData.append('File', file);
-    return axios.post(url, formData, {
-      headers: {'Content-type': 'multipart/form-data'}
-    }).then(responseBody)
+    formData.append("File", file);
+    return axios
+      .post(url, formData, {
+        headers: { "Content-type": "multipart/form-data" }
+      })
+      .then(responseBody);
   }
 };
 
@@ -103,9 +105,15 @@ const User = {
 const Profiles = {
   get: (username: string): Promise<IProfile> =>
     requests.get(`/profiles/${username}`),
-  uploadPhoto: (photo: Blob): Promise<IPhoto> => requests.postFrom(`/photos`, photo),
+  uploadPhoto: (photo: Blob): Promise<IPhoto> =>
+    requests.postFrom(`/photos`, photo),
   setMainPhoto: (id: string) => requests.post(`/photos/${id}/setMain`, {}),
-  deletePhoto: (id:string) => requests.del(`/photos/${id}`)
+  deletePhoto: (id: string) => requests.del(`/photos/${id}`),
+  follow: (username: string) =>
+    requests.post(`/profiles/${username}/follow`, {}),
+  unfollow: (username: string) => requests.del(`/profiles/${username}/follow`),
+  listFollowings: (username: string, predicate: string) =>
+    requests.get(`/profiles/${username}/follow?predicate=${predicate}`)
 };
 
 export default {

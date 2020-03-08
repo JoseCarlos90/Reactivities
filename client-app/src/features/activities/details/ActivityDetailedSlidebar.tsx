@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import { IAttendee } from "../../../app/models/activity";
 import { observer } from "mobx-react-lite";
 
-interface IProps{
-  attendees: IAttendee[]
+interface IProps {
+  attendees: IAttendee[];
 }
 
-const ActivityDetailedSlidebar: React.FC<IProps> = ({attendees}) => {
+const ActivityDetailedSlidebar: React.FC<IProps> = ({ attendees }) => {
   return (
     <Fragment>
       <Segment
@@ -41,7 +41,9 @@ const ActivityDetailedSlidebar: React.FC<IProps> = ({attendees}) => {
                     {attendee.displayName}
                   </Link>
                 </Item.Header>
-                <Item.Extra style={{ color: "orange" }}>Following</Item.Extra>
+                {attendee.following && (
+                  <Item.Extra style={{ color: "orange" }}>Following</Item.Extra>
+                )}
               </Item.Content>
             </Item>
           ))}
@@ -51,4 +53,4 @@ const ActivityDetailedSlidebar: React.FC<IProps> = ({attendees}) => {
   );
 };
 
-export default observer( ActivityDetailedSlidebar);
+export default observer(ActivityDetailedSlidebar);
