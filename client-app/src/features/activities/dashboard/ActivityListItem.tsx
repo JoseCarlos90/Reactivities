@@ -19,7 +19,7 @@ const ActivityListItem: React.FC<{ activity: IActivity }> = ({ activity }) => {
               style={{ marginBottom: 3 }}
             />
             <Item.Content>
-              <Item.Header as={Link} to={`/activities/${activity}`}>
+              <Item.Header as={Link} to={`/activities/${activity.id}`}>
                 {activity.title}
               </Item.Header>
               <Item.Description>
