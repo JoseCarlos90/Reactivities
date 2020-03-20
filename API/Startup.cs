@@ -51,7 +51,7 @@ namespace API
                 });
             });
 
-            services.AddMediatR(typeof(Edit.Handler).Assembly);
+            services.AddMediatR(typeof(Application.Activities.Edit.Handler).Assembly);
             services.AddAutoMapper(typeof(List.Handler).Assembly);
             services.AddSignalR();
             services.AddControllers(opt =>

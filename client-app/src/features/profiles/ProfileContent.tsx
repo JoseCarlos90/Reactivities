@@ -4,13 +4,14 @@ import ProfilePhotos from './ProfilePhotos';
 import { observer } from 'mobx-react-lite';
 import ProfileFollowings from './ProfileFollowings';
 import ProfileActivities from './ProfileActivities';
+import ProfileDescription from './ProfileDescription';
 
 interface IProps{
     setActiveTab: (activiveIndex : any) => void;
 }
 
 const panes = [
-    {menuItem: 'About', render: () => <Tab.Pane>About content</Tab.Pane>},
+    {menuItem: 'About', render: () => <ProfileDescription />},
     {menuItem: 'Photos', render: () => <ProfilePhotos />},
     {menuItem: 'Activities', render: () => <ProfileActivities />},
     {menuItem: 'Followers', render: () => <ProfileFollowings />},
@@ -24,7 +25,6 @@ const ProfileContent: React.FC<IProps> = ({setActiveTab}) => {
             menuPosition='right'
             panes={panes}
             onTabChange={(e, data) => setActiveTab(data.activeIndex)}
-            //activeIndex={1}
         />
     )
 }

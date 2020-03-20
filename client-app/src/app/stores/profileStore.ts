@@ -187,4 +187,19 @@ export default class ProfileStore {
       });
     }
   };
+
+  @action updateProfile = async(profile: Partial<IProfile>) => {
+    try {
+      await agent.Profiles.updateProfiles(profile);
+      runInAction(() => {
+        if(profile !== this.rootStore.userStore.user!.displayName){
+          this.rootStore.userStore.user!.displayName = profile.displayName!;
+        }
+
+        this.profile = {...this.profile!, ...profile};
+      })
+    } catch (error) {
+      toast.error('Proble uploading profile');
+    }
+  }
 }
