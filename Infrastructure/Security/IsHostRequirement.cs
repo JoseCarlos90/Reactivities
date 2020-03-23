@@ -27,17 +27,18 @@ namespace Infrastructure.Security
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
         IsHostRequirement requirement)
         {
-           if (context.Resource is AuthorizationFilterContext authContext)
-      {
-        var currentUserName = _httpContextAccessor.HttpContext.User?.Claims?.SingleOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
-        var activityID = Guid.Parse(authContext.RouteData.Values["id"].ToString());
-        var activity = _context.Activities.FindAsync(activityID).Result;
-        var host = activity.UserActivities.FirstOrDefault(x => x.IsHost);
 
-        if (host?.AppUser?.UserName == currentUserName) context.Succeed(requirement); else context.Fail();
-      }
+            if (context.Resource is AuthorizationFilterContext authContext)
+            {
+                var currentUserName = _httpContextAccessor.HttpContext.User?.Claims?.SingleOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+                var activityID = Guid.Parse(authContext.RouteData.Values["id"].ToString());
+                var activity = _context.Activities.FindAsync(activityID).Result;
+                var host = activity.UserActivities.FirstOrDefault(x => x.IsHost);
 
-      return Task.CompletedTask;
+                if (host?.AppUser?.UserName == currentUserName) context.Succeed(requirement); else context.Fail();
+            }
+
+            return Task.CompletedTask;
 
         }
     }

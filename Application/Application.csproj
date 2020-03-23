@@ -10,5 +10,6 @@
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <GenerateAssenblyInfo>false</GenerateAssenblyInfo>
   </PropertyGroup>
 </Project>
