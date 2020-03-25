@@ -28,15 +28,15 @@ namespace Infrastructure.Security
         IsHostRequirement requirement)
         {
 
-            if (context.Resource is AuthorizationFilterContext authContext)
-            {
+            // if (context.Resource is AuthorizationFilterContext authContext)
+            // {
                 var currentUserName = _httpContextAccessor.HttpContext.User?.Claims?.SingleOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
-                var activityID = Guid.Parse(authContext.RouteData.Values["id"].ToString());
-                var activity = _context.Activities.FindAsync(activityID).Result;
+                var activityId = Guid.Parse(_httpContextAccessor.HttpContext.Request.RouteValues.SingleOrDefault(x => x.Key == "id").Value.ToString());
+                var activity = _context.Activities.FindAsync(activityId).Result;
                 var host = activity.UserActivities.FirstOrDefault(x => x.IsHost);
 
                 if (host?.AppUser?.UserName == currentUserName) context.Succeed(requirement); else context.Fail();
-            }
+            //}
 
             return Task.CompletedTask;
 
